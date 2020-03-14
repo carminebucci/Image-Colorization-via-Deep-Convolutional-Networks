@@ -161,7 +161,7 @@ def get_model(filename, pretrained = True):
     if pretrained:
         f = h5py.File(filename, 'r')
         wnames = [ key for key in f.keys() ]
-        print(wnames)
+        #print(wnames)
         gamma = 1
         beta = 0
         for layer in model.layers:
@@ -169,18 +169,18 @@ def get_model(filename, pretrained = True):
                 w = f[layer.name][layer.name]
                 if('kernel:0' in w.keys() and 'bias:0' in w.keys()):
                     layer.set_weights([w['kernel:0'], w['bias:0']])
-                    print("UPDATING " + layer.name + " WEIGHTS")
+                    #print("UPDATING " + layer.name + " WEIGHTS")
                 elif('moving_mean:0' in w.keys() and 'moving_variance:0' in w.keys()):
                     val = w['moving_mean:0'].shape
                     layer.set_weights([w['moving_mean:0'], w['moving_variance:0']])
-                    print("UPDATING " + layer.name + " WEIGHTS as BATCH NORM weight = \n{}, \n{}".format(
-                        w['moving_mean:0'],
+                    #print("UPDATING " + layer.name + " WEIGHTS as BATCH NORM weight = \n{}, \n{}".format(
+                    #    w['moving_mean:0'],
                         w['moving_variance:0']
-                    ))
+                    #))
 
                 else:
-                    print("DISCARDING " + layer.name + ", w.keys() = " + str(w.keys()))
-                    print("Expected Weights = {}".format(layer.get_weights()))
+                    #print("DISCARDING " + layer.name + ", w.keys() = " + str(w.keys()))
+                    #print("Expected Weights = {}".format(layer.get_weights()))
 
     ##Gamma and beta are the scaling and shift applied after normalization (cf. BN paper). gamma = 1, beta = 0 is "do nothing."
     model.compile(optimizer='adam', loss='sparse_categorical_crossentropy', metrics=['accuracy'])
