@@ -192,5 +192,5 @@ def get_model(filename, pretrained = True):
 if __name__ == "__main__":
 
     data_root = pjoin("data")
-    weights_fname_keras  = pjoin(data_root, "keras", "colorization_release_v2_norot.h5")
+    weights_fname_keras  = pjoin(data_root, "util", "colorization_release_v2_norot.h5")
     net = get_model(weights_fname_keras, True)
