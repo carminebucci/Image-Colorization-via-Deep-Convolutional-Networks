@@ -179,6 +179,7 @@ def get_model(filename, pretrained = True):
                     #))
 
                 else:
+                    pass
                     #print("DISCARDING " + layer.name + ", w.keys() = " + str(w.keys()))
                     #print("Expected Weights = {}".format(layer.get_weights()))
 
