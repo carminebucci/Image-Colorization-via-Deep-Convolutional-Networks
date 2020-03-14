@@ -175,7 +175,7 @@ def get_model(filename, pretrained = True):
                     layer.set_weights([w['moving_mean:0'], w['moving_variance:0']])
                     #print("UPDATING " + layer.name + " WEIGHTS as BATCH NORM weight = \n{}, \n{}".format(
                     #    w['moving_mean:0'],
-                        w['moving_variance:0']
+                    #    w['moving_variance:0']
                     #))
 
                 else:
